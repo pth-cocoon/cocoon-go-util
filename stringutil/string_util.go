@@ -2,6 +2,7 @@ package stringutil
 
 import (
 	"math/big"
+	"strconv"
 )
 
 // ReverseString 反转字符串
@@ -17,18 +18,21 @@ func ReverseString(s string) string {
 func ToString(o interface{}) string {
 	switch o.(type) {
 	case int:
-		{
-			return big.NewInt(int64(o.(int))).String()
-		}
-	case float32, float64:
-		{
-			return big.NewFloat(o.(float64)).String()
-		}
-
+		return ToString(int64(o.(int)))
+	case int8:
+		return ToString(int64(o.(int8)))
+	case int16:
+		return ToString(int64(o.(int16)))
+	case int32:
+		return ToString(int64(o.(uint8)))
+	case int64:
+		return big.NewInt(o.(int64)).String()
+	case float32:
+		return strconv.FormatFloat(float64(o.(float32)), 'f', -1, 32)
+	case float64:
+		return big.NewFloat(o.(float64)).String()
 	case error:
-		{
-			return o.(error).Error()
-		}
+		return o.(error).Error()
 	case bool:
 		{
 			if o == true {
