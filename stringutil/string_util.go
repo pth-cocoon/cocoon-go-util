@@ -18,7 +18,7 @@ func ToString(o interface{}) string {
 	switch o.(type) {
 	case int:
 		{
-			return big.NewInt(o.(int64)).String()
+			return big.NewInt(int64(o.(int))).String()
 		}
 	case float32, float64:
 		{
