@@ -2,7 +2,6 @@ package stringutil
 
 import (
 	"math/big"
-	"strconv"
 )
 
 // ReverseString 反转字符串
@@ -19,7 +18,7 @@ func ToString(o interface{}) string {
 	switch o.(type) {
 	case int:
 		{
-			return strconv.Itoa(o.(int))
+			return big.NewInt(o.(int64)).String()
 		}
 	case float32, float64:
 		{
